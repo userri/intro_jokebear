@@ -163,3 +163,21 @@ function clearDiary() {
     stickerContainer.innerHTML = '';
     diaryPlaceholder.classList.remove('hidden');
 }
+
+// ===== 상호작용 이미지 미리 불러오기 (첫 클릭 지연 방지) =====
+// 변신/감정/조연 말풍선 이미지는 클릭해야 처음 로드되어 순간 버벅임이 생김.
+// 페이지 로드 시 미리 받아두면 첫 클릭부터 바로 전환된다.
+(function preloadInteractiveImages() {
+    const sources = [
+        // 변신 곰
+        'images/바나나누끼2.png', 'images/고구마누끼.png', 'images/약과누끼.png',
+        // 감정 표정
+        'images/오열곰이미지.jpg', 'images/우쭐곰.jpg', 'images/파란숨참음.jpg', 'images/상처받았곰.webp',
+        // 세계관 조연 말풍선
+        'images/고로케들.jpg', 'images/퍼그카.jpg', 'images/가젤가젤.png',
+    ];
+    sources.forEach(src => {
+        const img = new Image();
+        img.src = src;
+    });
+})();
