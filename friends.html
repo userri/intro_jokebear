@@ -12,7 +12,7 @@
     <link href="https://fonts.googleapis.com/css2?family=Gaegu:wght@400;700&family=Noto+Sans+KR:wght@300;400;500;700&display=swap" rel="stylesheet">
 
     <style>
-        html { font-size: 17px; }
+        html { font-size: 17px; scroll-behavior: smooth; }
         .font-cute { font-family: 'Gaegu', cursive; }
         body {
             font-family: 'Noto Sans KR', sans-serif;
@@ -86,12 +86,12 @@
                 <div class="bg-[#FAF6F0] rounded-2xl p-4 text-center border border-dashed border-[#F3C5A8]">
                     <p class="text-xs text-gray-500 font-bold mb-3">🎨 눌러서 진짜 농담곰의 변신을 확인해보세요!</p>
                     <div class="flex justify-center gap-2 mb-4">
-                        <button onclick="morphBear('banana')" class="morph-btn px-3 py-1 bg-[#E28F6B] text-white text-xs font-cute font-bold rounded-full hover:opacity-90 transition-all">바나나곰 🍌</button>
-                        <button onclick="morphBear('potato')" class="morph-btn px-3 py-1 bg-gray-200 text-gray-700 text-xs font-cute font-bold rounded-full hover:bg-gray-300 transition-all">고구마곰 🍠</button>
-                        <button onclick="morphBear('yakgwa')" class="morph-btn px-3 py-1 bg-gray-200 text-gray-700 text-xs font-cute font-bold rounded-full hover:bg-gray-300 transition-all">약과곰 🍪</button>
+                        <button onclick="morphBear('banana')" class="morph-btn px-4 py-1.5 bg-[#E28F6B] text-white text-base font-cute font-bold rounded-full hover:opacity-90 transition-all">바나나곰 🍌</button>
+                        <button onclick="morphBear('potato')" class="morph-btn px-4 py-1.5 bg-gray-200 text-gray-700 text-base font-cute font-bold rounded-full hover:bg-gray-300 transition-all">고구마곰 🍠</button>
+                        <button onclick="morphBear('yakgwa')" class="morph-btn px-4 py-1.5 bg-gray-200 text-gray-700 text-base font-cute font-bold rounded-full hover:bg-gray-300 transition-all">약과곰 🍪</button>
                     </div>
                     <!-- 모핑 뷰어 (동적 이미지 렌더링 컨테이너) -->
-                    <div id="morph-viewer-box" class="w-32 h-32 mx-auto flex items-center justify-center bg-white rounded-2xl border border-[#F3C5A8]/50 p-1 shadow-inner overflow-hidden transition-all duration-300">
+                    <div id="morph-viewer-box" class="w-48 h-48 md:w-56 md:h-56 mx-auto flex items-center justify-center bg-white rounded-2xl border border-[#F3C5A8]/50 p-1 shadow-inner overflow-hidden transition-all duration-300">
                         <img id="morph-img" src="images/바나나누끼2.png" alt="바나나농담곰" class="w-full h-full object-contain transition-all duration-300 transform scale-100">
                     </div>
                 </div>
@@ -109,14 +109,14 @@
                 <!-- 감정 체인저 놀이터 -->
                 <div class="bg-[#FAF6F0] rounded-2xl p-4 text-center border border-dashed border-[#F3C5A8]">
                     <p class="text-xs text-gray-500 font-bold mb-3">💓 감정을 터치해서 표정을 바꿔보세요!</p>
-                    <div class="grid grid-cols-4 gap-1 mb-4">
-                        <button onclick="expressFeel('crying')" class="px-2 py-1 bg-white hover:bg-[#FFF0E0] border border-[#FFDEB4] text-xs font-cute font-bold rounded-lg text-blue-500">오열곰</button>
-                        <button onclick="expressFeel('proud')" class="px-2 py-1 bg-white hover:bg-[#FFF0E0] border border-[#FFDEB4] text-xs font-cute font-bold rounded-lg text-amber-500">우쭐곰</button>
-                        <button onclick="expressFeel('breath')" class="px-2 py-1 bg-white hover:bg-[#FFF0E0] border border-[#FFDEB4] text-xs font-cute font-bold rounded-lg text-teal-500">숨참곰</button>
-                        <button onclick="expressFeel('hurt')" class="px-2 py-1 bg-white hover:bg-[#FFF0E0] border border-[#FFDEB4] text-xs font-cute font-bold rounded-lg text-red-500">상처받았곰</button>
+                    <div class="grid grid-cols-2 sm:grid-cols-4 gap-2 mb-4">
+                        <button onclick="expressFeel('crying')" class="px-2 py-1.5 bg-white hover:bg-[#FFF0E0] border border-[#FFDEB4] text-base font-cute font-bold rounded-lg text-blue-500">오열곰</button>
+                        <button onclick="expressFeel('proud')" class="px-2 py-1.5 bg-white hover:bg-[#FFF0E0] border border-[#FFDEB4] text-base font-cute font-bold rounded-lg text-amber-500">우쭐곰</button>
+                        <button onclick="expressFeel('breath')" class="px-2 py-1.5 bg-white hover:bg-[#FFF0E0] border border-[#FFDEB4] text-base font-cute font-bold rounded-lg text-teal-500">숨참곰</button>
+                        <button onclick="expressFeel('hurt')" class="px-2 py-1.5 bg-white hover:bg-[#FFF0E0] border border-[#FFDEB4] text-base font-cute font-bold rounded-lg text-red-500">상처받았곰</button>
                     </div>
                     <!-- 표정 뷰어 (실제 이미지) -->
-                    <div class="w-24 h-24 mx-auto flex items-center justify-center bg-white rounded-xl border border-[#F3C5A8]/50 p-1 shadow-inner overflow-hidden">
+                    <div class="w-48 h-48 md:w-56 md:h-56 mx-auto flex items-center justify-center bg-white rounded-xl border border-[#F3C5A8]/50 p-1 shadow-inner overflow-hidden">
                         <img id="feeling-img" src="images/우쭐곰.jpg" alt="우쭐곰" class="w-full h-full object-contain transition-all duration-300">
                     </div>
                 </div>
@@ -133,11 +133,11 @@
                 </div>
                 <div class="pt-4 border-t border-gray-100">
                     <div class="flex flex-wrap gap-2">
-                        <span class="px-3 py-1 bg-[#FFF5EB] text-[#E28F6B] text-xs font-cute font-bold rounded-full border border-[#FFDEB4]">두더지 고로케</span>
-                        <span class="px-3 py-1 bg-[#FFF5EB] text-[#E28F6B] text-xs font-cute font-bold rounded-full border border-[#FFDEB4]">퍼그씨</span>
-                        <span class="px-3 py-1 bg-[#FFF5EB] text-[#E28F6B] text-xs font-cute font-bold rounded-full border border-[#FFDEB4]">임팔라</span>
-                        <span class="px-3 py-1 bg-[#FFF5EB] text-gray-400 text-xs font-cute font-bold rounded-full border border-[#FFDEB4]">그리고 더…</span>
+                        <a href="#world" class="px-3 py-1.5 bg-[#FFF5EB] hover:bg-[#FFDEB4] text-[#E28F6B] text-sm font-cute font-bold rounded-full border border-[#FFDEB4] transition-colors">두더지 고로케</a>
+                        <a href="#world" class="px-3 py-1.5 bg-[#FFF5EB] hover:bg-[#FFDEB4] text-[#E28F6B] text-sm font-cute font-bold rounded-full border border-[#FFDEB4] transition-colors">퍼그씨</a>
+                        <a href="#world" class="px-3 py-1.5 bg-[#FFF5EB] hover:bg-[#FFDEB4] text-[#E28F6B] text-sm font-cute font-bold rounded-full border border-[#FFDEB4] transition-colors">임팔라</a>
                     </div>
+                    <p class="text-xs text-gray-400 mt-2">👆 누르면 아래 소개로 이동해요</p>
                 </div>
             </div>
 
