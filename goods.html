@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>농담곰 굿즈 이야기 - 팝업 소식 & 나의 소장 다이어리</title>
+    <title>농담곰 굿즈 이야기 - 팝업 소식 & 모니멘툼 프로젝트</title>
     <!-- Tailwind CSS -->
     <script src="https://cdn.tailwindcss.com"></script>
     <!-- Google Fonts: Gaegu (Heading), Noto Sans KR (Body) -->
@@ -102,60 +102,69 @@
     </div>
 </section>
 
-<!-- 굿즈 소장 가치 다이어리 꾸미기 미니게임 -->
+<!-- 모니멘툼: 팬심에서 이어진 프로젝트 소개 -->
 <section id="goods" class="py-20 px-6 bg-gradient-to-b from-white via-[#FCFAF2] to-[#FAF6F0]">
-    <div class="max-w-4xl mx-auto text-center">
-        <div class="mb-10">
-            <span class="text-[#E28F6B] font-bold tracking-wider text-sm bg-white px-3 py-1 rounded-full shadow-sm">감동 한 조각</span>
-            <h2 class="font-cute text-4xl md:text-5xl font-bold mt-3 text-[#4A3E3D]">"소중해서 못 꺼내던 굿즈, 오늘 다이어리에 붙여볼까?"</h2>
-            <p class="text-gray-600 mt-4 max-w-xl mx-auto">
-                서랍장 속 아끼기만 하던 농담곰 굿즈를 이 가상 다이어리 속으로 해제해보세요!<br> 아래 스티커들을 터치하면 다이어리 위로 툭툭 나타납니다! (자유롭게 드래그 가능!)
+    <div class="max-w-5xl mx-auto">
+        <!-- 헤더 -->
+        <div class="text-center mb-12">
+            <span class="text-[#E28F6B] font-bold tracking-wider text-sm bg-white px-3 py-1 rounded-full shadow-sm">팬심이 만든 프로젝트</span>
+            <h2 class="font-cute text-4xl md:text-5xl font-bold mt-3 text-[#4A3E3D]">소중해서 박제해둔 굿즈, 꺼내주고 싶었어요</h2>
+            <p class="text-gray-600 mt-4 max-w-2xl mx-auto leading-relaxed">
+                농담곰 굿즈를 모을수록 역설적으로 비닐째 서랍에 넣어두게 되더라고요. "소중할수록 오히려 안 보게 된다"는 게 아쉬워서,
+                굿즈를 온라인 전시장에 꺼내두는 서비스 <strong class="text-[#E28F6B]">모니멘툼 (Monimentum)</strong> 을 직접 만들었습니다.
             </p>
         </div>
 
-        <!-- 미니게임 보드 구성 -->
-        <div class="grid md:grid-cols-4 gap-6 items-start">
-            <!-- 왼쪽: 스티커 팩 서랍 -->
-            <div class="bg-white border-2 border-[#FFDEB4] rounded-2xl p-4 shadow-sm md:col-span-1">
-                <h3 class="font-cute text-xl font-bold text-[#E28F6B] mb-3 border-b pb-2">📦 굿즈 상자 개봉</h3>
-                <div class="grid grid-cols-2 md:grid-cols-1 gap-2">
-                    <button onclick="addSticker('sticker-bear')" class="flex items-center gap-2 p-2 bg-[#FFFBF7] hover:bg-[#FFF5EB] border border-[#FFDEB4]/50 rounded-xl text-xs font-cute font-bold transition-all transform active:scale-95">
-                        <span>🐻</span> 농담곰 키링
-                    </button>
-                    <button onclick="addSticker('sticker-goguma')" class="flex items-center gap-2 p-2 bg-[#FFFBF7] hover:bg-[#FFF5EB] border border-[#FFDEB4]/50 rounded-xl text-xs font-cute font-bold transition-all transform active:scale-95">
-                        <span>🥔</span> 고로케 인형
-                    </button>
-                    <button onclick="addSticker('sticker-car')" class="flex items-center gap-2 p-2 bg-[#FFFBF7] hover:bg-[#FFF5EB] border border-[#FFDEB4]/50 rounded-xl text-xs font-cute font-bold transition-all transform active:scale-95">
-                        <span>🚗</span> 붕붕 자동차
-                    </button>
-                    <button onclick="addSticker('sticker-heart')" class="flex items-center gap-2 p-2 bg-[#FFFBF7] hover:bg-[#FFF5EB] border border-[#FFDEB4]/50 rounded-xl text-xs font-cute font-bold transition-all transform active:scale-95">
-                        <span>💖</span> 사랑의 이펙트
-                    </button>
-                    <button onclick="clearDiary()" class="flex items-center justify-center gap-2 p-2 bg-rose-500 hover:bg-rose-600 text-white rounded-xl text-xs font-cute font-bold mt-2 transition-all">
-                        <span>🗑️</span> 다이어리 리셋
-                    </button>
-                </div>
+        <!-- 스크린샷 2장 -->
+        <div class="grid md:grid-cols-2 gap-6 mb-12">
+            <figure class="bg-white border-2 border-[#FFDEB4] rounded-3xl p-3 shadow-sm">
+                <img src="images/monimentum-main.png" alt="모니멘툼 메인 화면" class="w-full rounded-2xl">
+                <figcaption class="font-cute text-lg font-bold text-[#E28F6B] mt-3 text-center">🏠 메인 — 나만의 전시 공간 입구</figcaption>
+            </figure>
+            <figure class="bg-white border-2 border-[#FFDEB4] rounded-3xl p-3 shadow-sm">
+                <img src="images/monimentum-room.png" alt="모니멘툼 굿즈 전시/등록 화면" class="w-full rounded-2xl">
+                <figcaption class="font-cute text-lg font-bold text-[#E28F6B] mt-3 text-center">🖼️ Room — 굿즈를 배치하고 전시</figcaption>
+            </figure>
+        </div>
+
+        <!-- 핵심 기능 카드 -->
+        <div class="grid sm:grid-cols-2 md:grid-cols-3 gap-6 mb-10">
+            <div class="bg-white border border-[#FFDEB4] rounded-2xl p-6 shadow-sm">
+                <div class="text-3xl mb-2">🚪</div>
+                <h3 class="font-cute text-xl font-bold text-[#E28F6B] mb-1">1인 1전시공간</h3>
+                <p class="text-sm text-gray-500 leading-relaxed">유저마다 방 하나 + 책장 2개의 전시장을 가져요.</p>
             </div>
-
-            <!-- 오른쪽: 가상 다이어리 속지 -->
-            <div class="bg-[#FFFBF7] border-4 border-double border-[#F3C5A8] rounded-3xl p-6 min-h-[350px] shadow-lg relative overflow-hidden md:col-span-3" id="diary-area">
-                <!-- 다이어리 그리드 배경선 구현 -->
-                <div class="absolute inset-0 pointer-events-none opacity-30" style="background-image: radial-gradient(#4A3E3D 1px, transparent 1px); background-size: 20px 20px;"></div>
-
-                <div class="relative z-10 pointer-events-none">
-                    <h3 class="font-cute text-3xl font-bold text-[#E28F6B] mb-2 border-b-2 border-dashed border-[#F3C5A8] pb-1 inline-block">농담곰과 함께한 기록 ✍️</h3>
-                    <p class="text-sm text-gray-400 mt-1">"서랍 속에만 넣어둔다면 아쉬우니까, 오늘 여기서 꺼내두자!"</p>
-                </div>
-
-                <!-- 다이어리 빈 화면 안내 -->
-                <div id="diary-placeholder" class="absolute inset-0 flex flex-col justify-center items-center text-center pointer-events-none text-gray-400">
-                    <span class="text-5xl mb-2 animate-pulse">📦</span>
-                    <p class="font-cute text-xl">왼쪽 상자에서 원하는 굿즈를 클릭해 꺼내세요!</p>
-                </div>
-
-                <!-- 동적 드래그 가능 스티커 컨테이너 -->
-                <div id="sticker-container" class="absolute inset-0 overflow-hidden"></div>
+            <div class="bg-white border border-[#FFDEB4] rounded-2xl p-6 shadow-sm">
+                <div class="text-3xl mb-2">🧩</div>
+                <h3 class="font-cute text-xl font-bold text-[#E28F6B] mb-1">자유로운 그리드 배치</h3>
+                <p class="text-sm text-gray-500 leading-relaxed">기본 5×5 그리드에, 굿즈 크기에 맞춰 1×5·3×2처럼 칸을 묶어 배치할 수 있어요.</p>
             </div>
+            <div class="bg-white border border-[#FFDEB4] rounded-2xl p-6 shadow-sm">
+                <div class="text-3xl mb-2">💛</div>
+                <h3 class="font-cute text-xl font-bold text-[#E28F6B] mb-1">카카오 로그인 · 소통</h3>
+                <p class="text-sm text-gray-500 leading-relaxed">카카오로 간편 로그인, 좋아요·댓글로 다른 사람의 전시도 구경해요.</p>
+            </div>
+            <div class="bg-white border border-[#FFDEB4] rounded-2xl p-6 shadow-sm">
+                <div class="text-3xl mb-2">🎯</div>
+                <h3 class="font-cute text-xl font-bold text-[#E28F6B] mb-1">지정이동 · 랜덤이동</h3>
+                <p class="text-sm text-gray-500 leading-relaxed">원하는 방으로 지정 이동하거나, 랜덤으로 남의 전시장을 탐험할 수 있어요.</p>
+            </div>
+            <div class="bg-white border border-[#FFDEB4] rounded-2xl p-6 shadow-sm">
+                <div class="text-3xl mb-2">⚾</div>
+                <h3 class="font-cute text-xl font-bold text-[#E28F6B] mb-1">굿즈가 아니어도</h3>
+                <p class="text-sm text-gray-500 leading-relaxed">좋아하는 야구 선수·로고처럼, 내가 아끼는 무엇이든 전시하도록 설계했어요.</p>
+            </div>
+            <div class="bg-white border border-[#FFDEB4] rounded-2xl p-6 shadow-sm">
+                <div class="text-3xl mb-2">🏅</div>
+                <h3 class="font-cute text-xl font-bold text-[#E28F6B] mb-1">다음 숙제</h3>
+                <p class="text-sm text-gray-500 leading-relaxed">"희귀템 인증 뱃지가 있으면 좋겠다"는 피드백을 받아, 다음 버전 목표로 남겨뒀어요.</p>
+            </div>
+        </div>
+
+        <!-- 내 역할 / 메모 -->
+        <div class="max-w-3xl mx-auto bg-[#FFF5EB] border-2 border-dashed border-[#F3C5A8] rounded-3xl p-6 text-center">
+            <p class="font-cute text-xl font-bold text-[#4A3E3D] mb-2">👩‍💻 3인 팀 프로젝트 · 아이디어 발안 & 기획</p>
+            <p class="text-sm text-gray-500 leading-relaxed">이 서비스의 최초 아이디어를 냈고, 전시 공간 구조를 기획했어요.<br>※ 현재 서비스는 내려가 있어 발표 자료 캡처로 소개합니다.</p>
         </div>
     </div>
 </section>
