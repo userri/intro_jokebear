@@ -1,0 +1,299 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>농담곰 별명 맞히기 퀴즈 - 당신은 찐팬인가요?</title>
+    <!-- Tailwind CSS -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    <!-- Google Fonts: Gaegu (Heading), Noto Sans KR (Body) -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Gaegu:wght@400;700&family=Noto+Sans+KR:wght@300;400;500;700&display=swap" rel="stylesheet">
+
+    <style>
+        html { font-size: 17px; }
+        .font-cute { font-family: 'Gaegu', cursive; }
+        body {
+            font-family: 'Noto Sans KR', sans-serif;
+            background-color: #FAF6F0;
+            color: #4A3E3D;
+        }
+        @keyframes float {
+            0%, 100% { transform: translateY(0) rotate(0deg); }
+            50% { transform: translateY(-8px) rotate(1deg); }
+        }
+        .float-animation { animation: float 4s ease-in-out infinite; }
+        @keyframes pulse-soft {
+            0%, 100% { transform: scale(1); }
+            50% { transform: scale(1.03); }
+        }
+        .pulse-animation { animation: pulse-soft 3s ease-in-out infinite; }
+        ::-webkit-scrollbar { width: 8px; }
+        ::-webkit-scrollbar-track { background: #FAF6F0; }
+        ::-webkit-scrollbar-thumb { background: #E8D8C8; border-radius: 10px; }
+    </style>
+</head>
+<body class="overflow-x-hidden">
+
+<!-- ===== 공통 네비게이션 바 (모든 페이지 동일) ===== -->
+<nav class="sticky top-0 z-50 bg-[#FAF6F0]/90 backdrop-blur-md border-b border-[#F3C5A8]/30 px-6 py-4">
+    <div class="max-w-5xl mx-auto flex justify-between items-center">
+        <a href="index.html" class="font-cute text-3xl font-bold tracking-wider text-[#E28F6B] flex items-center gap-2">
+            <img src="images/얼굴.jpg" alt="농담곰 얼굴" class="inline-block w-9 h-9 object-cover rounded-full hover:scale-110 transition-transform"> 농담곰.kr
+        </a>
+        <!-- 데스크탑 메뉴 -->
+        <div class="hidden md:flex gap-8 font-cute text-xl font-bold">
+            <a href="index.html" class="text-[#4A3E3D] hover:text-[#E28F6B] transition-colors">홈</a>
+            <a href="friends.html" class="text-[#4A3E3D] hover:text-[#E28F6B] transition-colors">세계관</a>
+            <a href="goods.html" class="text-[#4A3E3D] hover:text-[#E28F6B] transition-colors">굿즈</a>
+            <a href="game.html" class="text-[#E28F6B] underline underline-offset-8 decoration-2">게임</a>
+        </div>
+        <!-- 햄버거 버튼 (모바일) -->
+        <button onclick="toggleMenu()" class="md:hidden text-3xl text-[#E28F6B]" aria-label="메뉴 열기">☰</button>
+    </div>
+    <!-- 모바일 드롭다운 메뉴 -->
+    <div id="mobile-menu" class="hidden md:hidden mt-4 flex flex-col gap-2 font-cute text-xl font-bold text-center">
+        <a href="index.html" class="py-2 rounded-xl text-[#4A3E3D] hover:bg-[#FFF5EB]">홈</a>
+        <a href="friends.html" class="py-2 rounded-xl text-[#4A3E3D] hover:bg-[#FFF5EB]">세계관</a>
+        <a href="goods.html" class="py-2 rounded-xl text-[#4A3E3D] hover:bg-[#FFF5EB]">굿즈</a>
+        <a href="game.html" class="py-2 rounded-xl bg-[#FFF0E0] text-[#E28F6B]">게임</a>
+    </div>
+</nav>
+
+<!-- 퀴즈 게임 섹션 -->
+<section class="min-h-[90vh] py-16 px-6 bg-gradient-to-b from-[#FAF6F0] via-[#FCFAF2] to-[#FFF5EB]">
+    <div class="max-w-2xl mx-auto">
+        <!-- 헤더 -->
+        <div class="text-center mb-8">
+            <span class="text-[#E28F6B] font-bold tracking-wider text-sm bg-white px-3 py-1 rounded-full shadow-sm">팬심 테스트</span>
+            <h1 class="font-cute text-4xl md:text-5xl font-bold mt-3 text-[#4A3E3D]">농담곰 별명 맞히기 퀴즈</h1>
+            <p class="text-gray-600 mt-3">힌트를 보고 팬들이 부르는 <strong>별명</strong>을 맞혀보세요! 총 8문제 🐻</p>
+            <p class="text-xs text-gray-400 mt-2">※ 공식 명칭이 아니라 팬들이 애정으로 붙인 별명이에요</p>
+            <p id="best-score" class="font-cute text-lg text-[#E28F6B] font-bold mt-3"></p>
+        </div>
+
+        <!-- 진행률 + 점수 -->
+        <div id="progress-wrap" class="mb-6">
+            <div class="flex justify-between items-center font-cute font-bold text-[#4A3E3D] mb-2">
+                <span id="progress-label">문제 1 / 8</span>
+                <span id="score-label">점수 0</span>
+            </div>
+            <div class="w-full h-4 bg-white rounded-full border border-[#FFDEB4] overflow-hidden">
+                <div id="progress-bar" class="h-full bg-[#E28F6B] transition-all duration-300" style="width: 0%;"></div>
+            </div>
+        </div>
+
+        <!-- 문제 카드 -->
+        <div id="question-card" class="bg-white border-2 border-[#FFDEB4] rounded-3xl p-8 shadow-md text-center">
+            <div class="text-5xl mb-4">🤔</div>
+            <p id="hint-text" class="font-cute text-2xl md:text-3xl font-bold text-[#4A3E3D] leading-relaxed mb-6">힌트가 여기에 표시돼요</p>
+
+            <input id="answer-input" type="text" autocomplete="off"
+                class="w-full text-center font-cute text-2xl font-bold text-[#E28F6B] bg-[#FAF6F0] border-2 border-[#F3C5A8] rounded-2xl py-3 px-4 focus:outline-none focus:border-[#E28F6B] transition-colors"
+                placeholder="정답을 입력하세요 (예: OO곰)">
+
+            <button id="submit-btn" onclick="submitAnswer()"
+                class="w-full mt-4 bg-[#E28F6B] text-white font-cute text-2xl font-bold py-3 rounded-2xl shadow-sm hover:opacity-90 active:scale-95 transition-all">
+                제출하기
+            </button>
+
+            <!-- 피드백 -->
+            <div id="feedback" class="hidden mt-5 rounded-2xl p-4 font-bold"></div>
+
+            <!-- 다음 버튼 -->
+            <button id="next-btn" onclick="nextQuestion()"
+                class="hidden w-full mt-4 bg-[#4A3E3D] text-white font-cute text-2xl font-bold py-3 rounded-2xl shadow-sm hover:opacity-90 active:scale-95 transition-all">
+                다음 문제 →
+            </button>
+        </div>
+
+        <!-- 결과 카드 -->
+        <div id="result-card" class="hidden bg-white border-2 border-[#FFDEB4] rounded-3xl p-8 shadow-md text-center">
+            <div id="result-badge" class="text-6xl mb-3">🏆</div>
+            <h2 id="result-title" class="font-cute text-4xl font-bold text-[#E28F6B] mb-2">농담곰 마스터!</h2>
+            <p id="result-score" class="font-cute text-2xl font-bold text-[#4A3E3D] mb-1">8 / 8</p>
+            <p id="result-best" class="text-sm text-gray-500 mb-6"></p>
+            <div class="flex flex-col sm:flex-row gap-3 justify-center">
+                <button onclick="restartQuiz()" class="px-6 py-3 bg-[#E28F6B] text-white font-cute text-xl font-bold rounded-2xl shadow-sm hover:opacity-90 active:scale-95 transition-all">🔄 다시 도전!</button>
+                <a href="index.html" class="px-6 py-3 bg-white border-2 border-[#FFDEB4] text-[#E28F6B] font-cute text-xl font-bold rounded-2xl shadow-sm hover:bg-[#FFF5EB] transition-all">🏠 홈으로</a>
+            </div>
+        </div>
+    </div>
+</section>
+
+<!-- 푸터 정보 -->
+<footer class="bg-[#4A3E3D] text-[#FAF6F0] py-12 px-6 text-center">
+    <div class="max-w-4xl mx-auto">
+        <h3 class="font-cute text-3xl font-bold mb-4 tracking-widest text-[#FFF5EB]">매일 맛있는 걸 먹고 싶어</h3>
+        <p class="text-xs text-gray-300 max-w-md mx-auto leading-relaxed mb-6">
+            농담곰(Nagano Bear)은 작가 Nagano 님의 정품 IP 캐릭터입니다. 본 페이지는 농담곰을 아끼고 소장하는 가슴 따뜻한 팬의 마음으로 제작된 아름다운 가상 팬 허브 디자인 사이트입니다.
+        </p>
+        <div class="border-t border-gray-600/50 pt-6 text-[11px] text-gray-400 flex flex-col sm:flex-row justify-between items-center gap-4">
+            <span>© 2026 NAGANO BEAR FAN HUB. Crafted with 🤎 by Vanilla WebDev</span>
+            <div class="flex gap-4">
+                <a href="#" class="hover:text-white transition-colors">이용약관</a>
+                <a href="#" class="hover:text-white transition-colors">개인정보처리방침</a>
+                <a href="https://twitter.com/ngntrtr" target="_blank" class="hover:text-white transition-colors">공식 트위터 가기 🕊️</a>
+            </div>
+        </div>
+    </div>
+</footer>
+
+<!-- 공통 스크립트 (햄버거 메뉴 등) -->
+<script src="script.js"></script>
+
+<!-- 퀴즈 전용 스크립트 -->
+<script>
+    const QUIZ = [
+        { hint: '눈빛이 ㅇㅇ하다. ㅇㅇ곰. (그으윽~ 깊고 멍한 눈빛)', answers: ['그윽곰'] },
+        { hint: '눈이 ㅇㅇ 부었다. 눈ㅇㅇ곰.', answers: ['눈팅팅곰'] },
+        { hint: '펑펑 우는 그 곰! (세계관 페이지 감정 체인저에도 있어요)', answers: ['오열곰'] },
+        { hint: 'ㅇㅇ을 찌푸리다. ㅇㅇ곰.', answers: ['미간곰'] },
+        { hint: '새까맣게 그을린 곰의 진짜 별명은? 🏖️ 태닝곰 vs 선탠곰', answers: ['태닝곰'] },
+        { hint: '애애앵~ 🦟 귓가에 맴도는 그 소리!', answers: ['모기곰'] },
+        { hint: '징글벨 징글벨 🎄 선물 주러 왔곰!', answers: ['산타곰'] },
+        { hint: '"곰"이 가운데 들어가는 4글자. 편의점 대표 삼각▲ 먹거리!', answers: ['삼각곰밥'] },
+    ];
+    const BEST_KEY = 'jokebear_quiz_best';
+
+    let idx = 0;
+    let score = 0;
+    let answered = false;
+
+    // 공백 제거 + 소문자화로 관대하게 채점
+    function normalize(s) {
+        return (s || '').replace(/\s/g, '').toLowerCase();
+    }
+
+    const hintText = document.getElementById('hint-text');
+    const answerInput = document.getElementById('answer-input');
+    const submitBtn = document.getElementById('submit-btn');
+    const nextBtn = document.getElementById('next-btn');
+    const feedback = document.getElementById('feedback');
+    const progressBar = document.getElementById('progress-bar');
+    const progressLabel = document.getElementById('progress-label');
+    const scoreLabel = document.getElementById('score-label');
+    const questionCard = document.getElementById('question-card');
+    const resultCard = document.getElementById('result-card');
+    const bestScoreEl = document.getElementById('best-score');
+
+    // 최고 기록 표시
+    function showBest() {
+        const best = localStorage.getItem(BEST_KEY);
+        if (best !== null) {
+            bestScoreEl.textContent = `🏅 최고 기록: ${best} / ${QUIZ.length}`;
+        } else {
+            bestScoreEl.textContent = '';
+        }
+    }
+
+    function renderQuestion() {
+        answered = false;
+        const q = QUIZ[idx];
+        hintText.textContent = q.hint;
+        answerInput.value = '';
+        answerInput.disabled = false;
+        submitBtn.classList.remove('hidden');
+        nextBtn.classList.add('hidden');
+        feedback.classList.add('hidden');
+
+        progressLabel.textContent = `문제 ${idx + 1} / ${QUIZ.length}`;
+        scoreLabel.textContent = `점수 ${score}`;
+        progressBar.style.width = `${(idx / QUIZ.length) * 100}%`;
+
+        answerInput.focus();
+    }
+
+    function submitAnswer() {
+        if (answered) return;
+        const q = QUIZ[idx];
+        const user = normalize(answerInput.value);
+        if (user === '') {
+            answerInput.focus();
+            return;
+        }
+        answered = true;
+        answerInput.disabled = true;
+        submitBtn.classList.add('hidden');
+
+        const correct = q.answers.some(a => normalize(a) === user);
+        feedback.classList.remove('hidden');
+        if (correct) {
+            score++;
+            feedback.className = 'mt-5 rounded-2xl p-4 font-bold bg-[#E9F7EF] text-green-600 border border-green-200';
+            feedback.textContent = `⭕ 정답! "${q.answers[0]}" 맞아요!`;
+        } else {
+            feedback.className = 'mt-5 rounded-2xl p-4 font-bold bg-[#FDECEC] text-rose-500 border border-rose-200';
+            feedback.textContent = `❌ 아쉬워요! 정답은 "${q.answers[0]}"`;
+        }
+        scoreLabel.textContent = `점수 ${score}`;
+
+        nextBtn.textContent = (idx === QUIZ.length - 1) ? '결과 보기 🎉' : '다음 문제 →';
+        nextBtn.classList.remove('hidden');
+        nextBtn.focus();
+    }
+
+    function nextQuestion() {
+        idx++;
+        if (idx < QUIZ.length) {
+            renderQuestion();
+        } else {
+            finishQuiz();
+        }
+    }
+
+    function finishQuiz() {
+        // 진행률 100%
+        progressBar.style.width = '100%';
+        progressLabel.textContent = `문제 ${QUIZ.length} / ${QUIZ.length}`;
+
+        questionCard.classList.add('hidden');
+        resultCard.classList.remove('hidden');
+
+        // 뱃지 등급
+        let badge, title;
+        if (score === QUIZ.length) { badge = '🏆'; title = '농담곰 마스터!'; }
+        else if (score >= 6) { badge = '🌟'; title = '찐팬 인정!'; }
+        else if (score >= 3) { badge = '🐻'; title = '입문 농담이'; }
+        else { badge = '🍞'; title = '아직은 만두곰...'; }
+
+        document.getElementById('result-badge').textContent = badge;
+        document.getElementById('result-title').textContent = title;
+        document.getElementById('result-score').textContent = `${score} / ${QUIZ.length}`;
+
+        // 최고 기록 갱신 (localStorage)
+        const prevBest = localStorage.getItem(BEST_KEY);
+        const resultBest = document.getElementById('result-best');
+        if (prevBest === null || score > Number(prevBest)) {
+            localStorage.setItem(BEST_KEY, String(score));
+            resultBest.textContent = '🎉 최고 기록 갱신!';
+        } else {
+            resultBest.textContent = `최고 기록: ${prevBest} / ${QUIZ.length}`;
+        }
+        showBest();
+    }
+
+    function restartQuiz() {
+        idx = 0;
+        score = 0;
+        resultCard.classList.add('hidden');
+        questionCard.classList.remove('hidden');
+        renderQuestion();
+    }
+
+    // Enter 키로 제출 / 다음
+    answerInput.addEventListener('keydown', (e) => {
+        if (e.key === 'Enter') {
+            e.preventDefault();
+            if (!answered) submitAnswer();
+            else nextQuestion();
+        }
+    });
+
+    // 시작
+    showBest();
+    renderQuestion();
+</script>
+</body>
+</html>
