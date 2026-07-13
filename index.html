@@ -1,0 +1,198 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>농담곰(Nagano Bear) - 눈에 초점은 없지만, 마음은 다 담겨있어</title>
+    <!-- Tailwind CSS -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    <!-- Google Fonts: Gaegu (Heading), Noto Sans KR (Body) -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Gaegu:wght@400;700&family=Noto+Sans+KR:wght@300;400;500;700&display=swap" rel="stylesheet">
+
+    <style>
+        html { font-size: 17px; }
+        .font-cute { font-family: 'Gaegu', cursive; }
+        body {
+            font-family: 'Noto Sans KR', sans-serif;
+            background-color: #FAF6F0;
+            color: #4A3E3D;
+        }
+        @keyframes float {
+            0%, 100% { transform: translateY(0) rotate(0deg); }
+            50% { transform: translateY(-8px) rotate(1deg); }
+        }
+        .float-animation { animation: float 4s ease-in-out infinite; }
+        @keyframes pulse-soft {
+            0%, 100% { transform: scale(1); }
+            50% { transform: scale(1.03); }
+        }
+        .pulse-animation { animation: pulse-soft 3s ease-in-out infinite; }
+        ::-webkit-scrollbar { width: 8px; }
+        ::-webkit-scrollbar-track { background: #FAF6F0; }
+        ::-webkit-scrollbar-thumb { background: #E8D8C8; border-radius: 10px; }
+    </style>
+</head>
+<body class="overflow-x-hidden">
+
+<!-- ===== 공통 네비게이션 바 (모든 페이지 동일) ===== -->
+<nav class="sticky top-0 z-50 bg-[#FAF6F0]/90 backdrop-blur-md border-b border-[#F3C5A8]/30 px-6 py-4">
+    <div class="max-w-5xl mx-auto flex justify-between items-center">
+        <a href="index.html" class="font-cute text-3xl font-bold tracking-wider text-[#E28F6B] flex items-center gap-2">
+            <img src="images/얼굴.jpg" alt="농담곰 얼굴" class="inline-block w-9 h-9 object-cover rounded-full hover:scale-110 transition-transform"> 농담곰.kr
+        </a>
+        <!-- 데스크탑 메뉴 -->
+        <div class="hidden md:flex gap-8 font-cute text-xl font-bold">
+            <a href="index.html" class="text-[#E28F6B] underline underline-offset-8 decoration-2">홈</a>
+            <a href="friends.html" class="text-[#4A3E3D] hover:text-[#E28F6B] transition-colors">세계관</a>
+            <a href="goods.html" class="text-[#4A3E3D] hover:text-[#E28F6B] transition-colors">굿즈</a>
+        </div>
+        <!-- 햄버거 버튼 (모바일) -->
+        <button onclick="toggleMenu()" class="md:hidden text-3xl text-[#E28F6B]" aria-label="메뉴 열기">☰</button>
+    </div>
+    <!-- 모바일 드롭다운 메뉴 -->
+    <div id="mobile-menu" class="hidden md:hidden mt-4 flex flex-col gap-2 font-cute text-xl font-bold text-center">
+        <a href="index.html" class="py-2 rounded-xl bg-[#FFF0E0] text-[#E28F6B]">홈</a>
+        <a href="friends.html" class="py-2 rounded-xl text-[#4A3E3D] hover:bg-[#FFF5EB]">세계관</a>
+        <a href="goods.html" class="py-2 rounded-xl text-[#4A3E3D] hover:bg-[#FFF5EB]">굿즈</a>
+    </div>
+</nav>
+
+<!-- 히어로 영역 -->
+<section id="intro" class="relative min-h-[90vh] flex flex-col justify-center items-center text-center px-4 py-16 bg-gradient-to-b from-[#FAF6F0] via-[#FCFAF2] to-[#FFF5EB]">
+    <!-- 배경 무늬 -->
+    <div class="absolute inset-0 opacity-20 pointer-events-none" style="background-image: radial-gradient(#F3C5A8 1.5px, transparent 1.5px); background-size: 24px 24px;"></div>
+
+    <div class="relative z-10 max-w-3xl mx-auto flex flex-col items-center">
+        <!-- 농담곰 일러스트 (만두곰) -->
+        <div class="w-64 h-64 md:w-80 md:h-80 mb-8 float-animation relative">
+            <img src="images/만두곰.jpg" alt="만두곰" class="w-full h-full object-contain rounded-3xl filter drop-shadow-md">
+            <div class="absolute -top-4 -right-12 bg-white border-2 border-[#4A3E3D] rounded-full px-3 py-1 text-xs font-cute font-bold shadow-sm rotate-12">
+                냠냠..🐾
+            </div>
+        </div>
+
+        <!-- 캐치프레이즈 영역 -->
+        <div class="bg-white border-2 border-[#F3C5A8] rounded-3xl p-6 md:p-8 shadow-md max-w-xl mb-12 relative pulse-animation">
+            <span class="absolute -top-3 left-6 bg-[#FFDEB4] text-[#4A3E3D] px-3 py-1 text-xs font-bold rounded-full">농담곰의 마음의 소리</span>
+            <h1 id="catchphrase-text" class="font-cute text-3xl md:text-4xl font-bold text-[#E28F6B]">
+                "매일 맛있는 걸 먹고 싶어"
+            </h1>
+        </div>
+
+        <!-- 페이지 안내 -->
+        <div class="flex flex-wrap justify-center gap-3 font-cute text-lg font-bold">
+            <a href="friends.html" class="px-5 py-2 bg-[#E28F6B] text-white rounded-full shadow-sm hover:opacity-90 transition-all">세계관 친구들 보러가기 →</a>
+            <a href="goods.html" class="px-5 py-2 bg-white border-2 border-[#FFDEB4] text-[#E28F6B] rounded-full shadow-sm hover:bg-[#FFF5EB] transition-all">굿즈 이야기 →</a>
+        </div>
+    </div>
+</section>
+
+<!-- "뭐가 달라?" 비교 분석 섹션 -->
+<section id="difference" class="py-20 px-6 bg-white relative">
+    <div class="max-w-5xl mx-auto">
+        <div class="text-center mb-16">
+            <span class="text-[#E28F6B] font-bold tracking-wider text-sm uppercase bg-[#FFF0E0] px-3 py-1 rounded-full">헷갈리는 사람들 필독!</span>
+            <h2 class="font-cute text-4xl md:text-5xl font-bold mt-3 text-[#4A3E3D]">"농담곰, 다른 애들과 뭐가 달라?"</h2>
+            <p class="text-gray-600 mt-4 max-w-2xl mx-auto">하얀 얼굴에 귀여운 눈코입, 비슷해보이지만 달라요</p>
+        </div>
+
+        <div class="grid md:grid-cols-2 gap-8 items-stretch">
+            <!-- 치이카와 / 타 캐릭터 -->
+            <div class="border-2 border-dashed border-gray-200 rounded-3xl p-8 bg-gray-50 flex flex-col justify-between">
+                <div>
+                    <div class="flex justify-between items-center mb-6">
+                        <span class="text-3xl">🐹🐾</span>
+                        <span class="bg-gray-200 text-gray-600 px-3 py-1 rounded-full text-xs font-bold">🚨 유사 캐릭터 주의!</span>
+                    </div>
+                    <h3 class="font-cute text-3xl font-bold mb-4 text-gray-700">치이카와/타 캐릭터</h3>
+                    <ul class="space-y-6 text-gray-600">
+                        <li class="flex flex-col gap-2">
+                            <img src="images/모자이크 가나디.png" alt="모자이크 가나디" class="w-full h-40 object-contain rounded-2xl bg-white border border-gray-200 p-2">
+                            <div class="flex items-start gap-2">
+                                <span class="text-rose-400 font-bold mt-0.5">⚠️</span>
+                                <span><strong>가나디:</strong> 귀가 크고 처짐, 중안부가 긺</span>
+                            </div>
+                        </li>
+                        <li class="flex flex-col gap-2">
+                            <img src="images/치이카와즈.webp" alt="치이카와즈" class="w-full h-40 object-contain rounded-2xl bg-white border border-gray-200 p-2">
+                            <div class="flex items-start gap-2">
+                                <span class="text-rose-400 font-bold mt-0.5">⚠️</span>
+                                <span><strong>치이카와:</strong> 햄스터임. 농담곰보다 작음. 농담곰 작가가 만들었지만 엄연히 다른 캐릭터</span>
+                            </div>
+                        </li>
+                    </ul>
+                </div>
+                <div class="mt-8 pt-6 border-t border-gray-200 text-center text-sm text-gray-400">
+                    "실루엣은 비슷해도 매력은 완전히 다르답니다!"
+                </div>
+            </div>
+
+            <!-- 농담곰 (Nagano Bear) -->
+            <div class="border-2 border-[#FFDEB4] rounded-3xl p-8 bg-[#FFFBF7] shadow-xl flex flex-col justify-between transform hover:scale-[1.02] transition-transform relative overflow-hidden">
+                <div class="absolute -top-4 -right-4 w-24 h-24 bg-[#FFDEB4] opacity-20 rounded-full"></div>
+                <div>
+                    <div class="flex justify-between items-center mb-6">
+                        <span class="text-3xl">🐻🍙</span>
+                        <span class="bg-[#FFDEB4] text-[#E28F6B] px-3 py-1 rounded-full text-xs font-bold">농담곰 (Nagano Bear)</span>
+                    </div>
+                    <h3 class="font-cute text-3xl font-bold mb-4 text-[#E28F6B]">매력덩어리 농담곰</h3>
+                    <ul class="space-y-4 text-[#4A3E3D] font-medium">
+                        <li class="flex items-start gap-2">
+                            <span class="text-xl">👉</span>
+                            <span>감정표현이 풍부해요</span>
+                        </li>
+                        <li class="flex items-start gap-2">
+                            <span class="text-xl">👉</span>
+                            <span>맛있는 걸 좋아해요. 눈물을 흘리기도 해요.</span>
+                        </li>
+                        <li class="flex items-start gap-2">
+                            <span class="text-xl">👉</span>
+                            <span>상상하는 대로 다양하게 변신!</span>
+                        </li>
+                    </ul>
+                </div>
+                <div class="mt-8 pt-6 border-t border-[#FFDEB4] text-center text-[#E28F6B] font-cute text-xl font-bold">
+                    "농담월드에 오신걸 환영합니다~"
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+
+<!-- 농담곰 깨알 TMI 상식 -->
+<section class="py-16 px-6 bg-[#FFF9F3]">
+    <div class="max-w-3xl mx-auto bg-gradient-to-r from-[#FFF5EB] to-[#FFF0E0] border-2 border-dashed border-[#F3C5A8] rounded-3xl p-8 flex flex-col md:flex-row items-center gap-6 shadow-sm">
+        <img src="images/오해원곰.webp" alt="오해원곰" class="w-40 h-40 md:w-48 md:h-48 object-cover rounded-2xl flex-shrink-0 border-2 border-[#F3C5A8] shadow-sm">
+        <div>
+            <span class="bg-[#E28F6B] text-white text-xs font-bold px-2.5 py-0.5 rounded-full uppercase tracking-wider">귀여운 깨알 TMI</span>
+            <h3 class="font-cute text-2xl md:text-3xl font-bold text-[#4A3E3D] mt-2">아이돌 NMIXX 해원이의 또 다른 별명?</h3>
+            <p class="text-sm text-gray-600 mt-2 leading-relaxed">
+                NMIXX의 올라운더 멤버 <strong>해원</strong> 양이 멍하고도 유쾌한 표정으로 농담곰을 너무나 쏙 빼닮아, 팬들 사이에서 <strong>'오해원곰'</strong>이라는 넘사벽 큐티 칭호로 널리 불리고 있답니다! 이정도면 현실 세계 농담곰 본캐 아닌가요?
+            </p>
+        </div>
+    </div>
+</section>
+
+<!-- 푸터 정보 -->
+<footer class="bg-[#4A3E3D] text-[#FAF6F0] py-12 px-6 text-center">
+    <div class="max-w-4xl mx-auto">
+        <h3 class="font-cute text-3xl font-bold mb-4 tracking-widest text-[#FFF5EB]">매일 맛있는 걸 먹고 싶어</h3>
+        <p class="text-xs text-gray-300 max-w-md mx-auto leading-relaxed mb-6">
+            농담곰(Nagano Bear)은 작가 Nagano 님의 정품 IP 캐릭터입니다. 본 페이지는 농담곰을 아끼고 소장하는 가슴 따뜻한 팬의 마음으로 제작된 아름다운 가상 팬 허브 디자인 사이트입니다.
+        </p>
+        <div class="border-t border-gray-600/50 pt-6 text-[11px] text-gray-400 flex flex-col sm:flex-row justify-between items-center gap-4">
+            <span>© 2026 NAGANO BEAR FAN HUB. Crafted with 🤎 by Vanilla WebDev</span>
+            <div class="flex gap-4">
+                <a href="#" class="hover:text-white transition-colors">이용약관</a>
+                <a href="#" class="hover:text-white transition-colors">개인정보처리방침</a>
+                <a href="https://twitter.com/ngntrtr" target="_blank" class="hover:text-white transition-colors">공식 트위터 가기 🕊️</a>
+            </div>
+        </div>
+    </div>
+</footer>
+
+<script src="script.js"></script>
+</body>
+</html>
