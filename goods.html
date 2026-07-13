@@ -1,0 +1,181 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>농담곰 굿즈 이야기 - 팝업 소식 & 나의 소장 다이어리</title>
+    <!-- Tailwind CSS -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    <!-- Google Fonts: Gaegu (Heading), Noto Sans KR (Body) -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Gaegu:wght@400;700&family=Noto+Sans+KR:wght@300;400;500;700&display=swap" rel="stylesheet">
+
+    <style>
+        html { font-size: 17px; }
+        .font-cute { font-family: 'Gaegu', cursive; }
+        body {
+            font-family: 'Noto Sans KR', sans-serif;
+            background-color: #FAF6F0;
+            color: #4A3E3D;
+        }
+        @keyframes float {
+            0%, 100% { transform: translateY(0) rotate(0deg); }
+            50% { transform: translateY(-8px) rotate(1deg); }
+        }
+        .float-animation { animation: float 4s ease-in-out infinite; }
+        @keyframes pulse-soft {
+            0%, 100% { transform: scale(1); }
+            50% { transform: scale(1.03); }
+        }
+        .pulse-animation { animation: pulse-soft 3s ease-in-out infinite; }
+        ::-webkit-scrollbar { width: 8px; }
+        ::-webkit-scrollbar-track { background: #FAF6F0; }
+        ::-webkit-scrollbar-thumb { background: #E8D8C8; border-radius: 10px; }
+    </style>
+</head>
+<body class="overflow-x-hidden">
+
+<!-- ===== 공통 네비게이션 바 (모든 페이지 동일) ===== -->
+<nav class="sticky top-0 z-50 bg-[#FAF6F0]/90 backdrop-blur-md border-b border-[#F3C5A8]/30 px-6 py-4">
+    <div class="max-w-5xl mx-auto flex justify-between items-center">
+        <a href="index.html" class="font-cute text-3xl font-bold tracking-wider text-[#E28F6B] flex items-center gap-2">
+            <img src="images/얼굴.jpg" alt="농담곰 얼굴" class="inline-block w-9 h-9 object-cover rounded-full hover:scale-110 transition-transform"> 농담곰.kr
+        </a>
+        <!-- 데스크탑 메뉴 -->
+        <div class="hidden md:flex gap-8 font-cute text-xl font-bold">
+            <a href="index.html" class="text-[#4A3E3D] hover:text-[#E28F6B] transition-colors">홈</a>
+            <a href="friends.html" class="text-[#4A3E3D] hover:text-[#E28F6B] transition-colors">세계관</a>
+            <a href="goods.html" class="text-[#E28F6B] underline underline-offset-8 decoration-2">굿즈</a>
+        </div>
+        <!-- 햄버거 버튼 (모바일) -->
+        <button onclick="toggleMenu()" class="md:hidden text-3xl text-[#E28F6B]" aria-label="메뉴 열기">☰</button>
+    </div>
+    <!-- 모바일 드롭다운 메뉴 -->
+    <div id="mobile-menu" class="hidden md:hidden mt-4 flex flex-col gap-2 font-cute text-xl font-bold text-center">
+        <a href="index.html" class="py-2 rounded-xl text-[#4A3E3D] hover:bg-[#FFF5EB]">홈</a>
+        <a href="friends.html" class="py-2 rounded-xl text-[#4A3E3D] hover:bg-[#FFF5EB]">세계관</a>
+        <a href="goods.html" class="py-2 rounded-xl bg-[#FFF0E0] text-[#E28F6B]">굿즈</a>
+    </div>
+</nav>
+
+<!-- 요즘 화제 및 팝업스토어 소식 -->
+<section id="popup" class="py-20 px-6 bg-[#FFF9F3] border-b border-[#F3C5A8]/20">
+    <div class="max-w-5xl mx-auto">
+        <div class="text-center mb-16">
+            <span class="text-[#E28F6B] font-bold tracking-wider text-sm bg-white px-3 py-1 rounded-full shadow-sm">실제 체감 인기</span>
+            <h2 class="font-cute text-4xl md:text-5xl font-bold mt-3 text-[#4A3E3D]">소장 욕구 폭발! 요즘 대세 인증</h2>
+            <p class="text-gray-600 mt-4 max-w-xl mx-auto">가장 트렌디한 브랜드들의 단골 콜라보 스타, 직접 방문했던 따끈따끈한 현장을 자랑합니다!</p>
+        </div>
+
+        <!-- 3분할 텍스트 카드 -->
+        <div class="grid md:grid-cols-3 gap-8">
+            <!-- 팝업스토어 1 -->
+            <div class="bg-white rounded-3xl border border-[#FFDEB4] shadow-sm hover:shadow-md transition-all p-6 flex flex-col">
+                <span class="self-start bg-[#E28F6B] text-white text-xs font-bold px-2.5 py-1 rounded-full mb-4">상설 운영 🎈</span>
+                <h3 class="font-cute text-2xl font-bold text-[#E28F6B] mb-2">성수동 농담곰 상설 팝업</h3>
+                <p class="text-xs text-gray-500 leading-relaxed">
+                    가장 힙하다는 성수에 상설매장 오픈! 인테리어부터 농담곰 감성 가득한 일러스트가 사방을 채워, 들어서는 순간 카메라를 멈출 수 없어요.
+                </p>
+            </div>
+
+            <!-- 콜라보 2 -->
+            <div class="bg-white rounded-3xl border border-[#FFDEB4] shadow-sm hover:shadow-md transition-all p-6 flex flex-col">
+                <span class="self-start bg-[#E28F6B] text-white text-xs font-bold px-2.5 py-1 rounded-full mb-4">패션 콜라보 👕</span>
+                <h3 class="font-cute text-2xl font-bold text-[#E28F6B] mb-2">SPAO 스파오 잠옷 & 의류</h3>
+                <p class="text-xs text-gray-500 leading-relaxed">
+                    극강의 부드러움을 선사하는 농담곰 수면잠옷 세트! 소장 가치 가득한 콜라보로, 포근하게 입고 힐링하기 딱 좋아요.
+                </p>
+            </div>
+
+            <!-- 최근 방문 팝업 3 -->
+            <div class="bg-white rounded-3xl border border-[#FFDEB4] shadow-sm hover:shadow-md transition-all p-6 flex flex-col">
+                <span class="self-start bg-[#E28F6B] text-white text-xs font-bold px-2.5 py-1 rounded-full mb-4">최근 방문지 👣</span>
+                <h3 class="font-cute text-2xl font-bold text-[#E28F6B] mb-2">영등포·신촌 팝업</h3>
+                <p class="text-xs text-gray-500 leading-relaxed">
+                    최근 직접 다녀온 따끈따끈한 현장! 대형 한정판 봉제인형부터 아기자기한 키링까지, 지갑을 아끼기 불가능한 사랑의 블랙홀이었어요.
+                </p>
+            </div>
+        </div>
+    </div>
+</section>
+
+<!-- 굿즈 소장 가치 다이어리 꾸미기 미니게임 -->
+<section id="goods" class="py-20 px-6 bg-gradient-to-b from-white via-[#FCFAF2] to-[#FAF6F0]">
+    <div class="max-w-4xl mx-auto text-center">
+        <div class="mb-10">
+            <span class="text-[#E28F6B] font-bold tracking-wider text-sm bg-white px-3 py-1 rounded-full shadow-sm">감동 한 조각</span>
+            <h2 class="font-cute text-4xl md:text-5xl font-bold mt-3 text-[#4A3E3D]">"소중해서 못 꺼내던 굿즈, 오늘 다이어리에 붙여볼까?"</h2>
+            <p class="text-gray-600 mt-4 max-w-xl mx-auto">
+                서랍장 속 아끼기만 하던 농담곰 굿즈를 이 가상 다이어리 속으로 해제해보세요!<br> 아래 스티커들을 터치하면 다이어리 위로 툭툭 나타납니다! (자유롭게 드래그 가능!)
+            </p>
+        </div>
+
+        <!-- 미니게임 보드 구성 -->
+        <div class="grid md:grid-cols-4 gap-6 items-start">
+            <!-- 왼쪽: 스티커 팩 서랍 -->
+            <div class="bg-white border-2 border-[#FFDEB4] rounded-2xl p-4 shadow-sm md:col-span-1">
+                <h3 class="font-cute text-xl font-bold text-[#E28F6B] mb-3 border-b pb-2">📦 굿즈 상자 개봉</h3>
+                <div class="grid grid-cols-2 md:grid-cols-1 gap-2">
+                    <button onclick="addSticker('sticker-bear')" class="flex items-center gap-2 p-2 bg-[#FFFBF7] hover:bg-[#FFF5EB] border border-[#FFDEB4]/50 rounded-xl text-xs font-cute font-bold transition-all transform active:scale-95">
+                        <span>🐻</span> 농담곰 키링
+                    </button>
+                    <button onclick="addSticker('sticker-goguma')" class="flex items-center gap-2 p-2 bg-[#FFFBF7] hover:bg-[#FFF5EB] border border-[#FFDEB4]/50 rounded-xl text-xs font-cute font-bold transition-all transform active:scale-95">
+                        <span>🥔</span> 고로케 인형
+                    </button>
+                    <button onclick="addSticker('sticker-car')" class="flex items-center gap-2 p-2 bg-[#FFFBF7] hover:bg-[#FFF5EB] border border-[#FFDEB4]/50 rounded-xl text-xs font-cute font-bold transition-all transform active:scale-95">
+                        <span>🚗</span> 붕붕 자동차
+                    </button>
+                    <button onclick="addSticker('sticker-heart')" class="flex items-center gap-2 p-2 bg-[#FFFBF7] hover:bg-[#FFF5EB] border border-[#FFDEB4]/50 rounded-xl text-xs font-cute font-bold transition-all transform active:scale-95">
+                        <span>💖</span> 사랑의 이펙트
+                    </button>
+                    <button onclick="clearDiary()" class="flex items-center justify-center gap-2 p-2 bg-rose-500 hover:bg-rose-600 text-white rounded-xl text-xs font-cute font-bold mt-2 transition-all">
+                        <span>🗑️</span> 다이어리 리셋
+                    </button>
+                </div>
+            </div>
+
+            <!-- 오른쪽: 가상 다이어리 속지 -->
+            <div class="bg-[#FFFBF7] border-4 border-double border-[#F3C5A8] rounded-3xl p-6 min-h-[350px] shadow-lg relative overflow-hidden md:col-span-3" id="diary-area">
+                <!-- 다이어리 그리드 배경선 구현 -->
+                <div class="absolute inset-0 pointer-events-none opacity-30" style="background-image: radial-gradient(#4A3E3D 1px, transparent 1px); background-size: 20px 20px;"></div>
+
+                <div class="relative z-10 pointer-events-none">
+                    <h3 class="font-cute text-3xl font-bold text-[#E28F6B] mb-2 border-b-2 border-dashed border-[#F3C5A8] pb-1 inline-block">농담곰과 함께한 기록 ✍️</h3>
+                    <p class="text-sm text-gray-400 mt-1">"서랍 속에만 넣어둔다면 아쉬우니까, 오늘 여기서 꺼내두자!"</p>
+                </div>
+
+                <!-- 다이어리 빈 화면 안내 -->
+                <div id="diary-placeholder" class="absolute inset-0 flex flex-col justify-center items-center text-center pointer-events-none text-gray-400">
+                    <span class="text-5xl mb-2 animate-pulse">📦</span>
+                    <p class="font-cute text-xl">왼쪽 상자에서 원하는 굿즈를 클릭해 꺼내세요!</p>
+                </div>
+
+                <!-- 동적 드래그 가능 스티커 컨테이너 -->
+                <div id="sticker-container" class="absolute inset-0 overflow-hidden"></div>
+            </div>
+        </div>
+    </div>
+</section>
+
+<!-- 푸터 정보 -->
+<footer class="bg-[#4A3E3D] text-[#FAF6F0] py-12 px-6 text-center">
+    <div class="max-w-4xl mx-auto">
+        <h3 class="font-cute text-3xl font-bold mb-4 tracking-widest text-[#FFF5EB]">매일 맛있는 걸 먹고 싶어</h3>
+        <p class="text-xs text-gray-300 max-w-md mx-auto leading-relaxed mb-6">
+            농담곰(Nagano Bear)은 작가 Nagano 님의 정품 IP 캐릭터입니다. 본 페이지는 농담곰을 아끼고 소장하는 가슴 따뜻한 팬의 마음으로 제작된 아름다운 가상 팬 허브 디자인 사이트입니다.
+        </p>
+        <div class="border-t border-gray-600/50 pt-6 text-[11px] text-gray-400 flex flex-col sm:flex-row justify-between items-center gap-4">
+            <span>© 2026 NAGANO BEAR FAN HUB. Crafted with 🤎 by Vanilla WebDev</span>
+            <div class="flex gap-4">
+                <a href="#" class="hover:text-white transition-colors">이용약관</a>
+                <a href="#" class="hover:text-white transition-colors">개인정보처리방침</a>
+                <a href="https://twitter.com/ngntrtr" target="_blank" class="hover:text-white transition-colors">공식 트위터 가기 🕊️</a>
+            </div>
+        </div>
+    </div>
+</footer>
+
+<script src="script.js"></script>
+</body>
+</html>
