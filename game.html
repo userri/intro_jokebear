@@ -86,8 +86,12 @@
 
         <!-- 문제 카드 -->
         <div id="question-card" class="bg-white border-2 border-[#FFDEB4] rounded-3xl p-8 shadow-md text-center">
-            <div class="text-5xl mb-4">🤔</div>
-            <p id="hint-text" class="font-cute text-2xl md:text-3xl font-bold text-[#4A3E3D] leading-relaxed mb-6">힌트가 여기에 표시돼요</p>
+            <!-- 문제 이미지 -->
+            <div class="w-full max-w-xs mx-auto aspect-square mb-4 bg-[#FAF6F0] rounded-2xl border border-[#F3C5A8] flex items-center justify-center overflow-hidden shadow-inner">
+                <img id="quiz-img" src="" alt="이 농담곰의 별명은?" class="w-full h-full object-contain">
+            </div>
+            <p class="text-sm text-gray-400 mb-1">이 농담곰의 별명은? 🐻</p>
+            <p id="hint-text" class="font-cute text-xl md:text-2xl font-bold text-[#4A3E3D] leading-relaxed mb-5">힌트</p>
 
             <input id="answer-input" type="text" autocomplete="off"
                 class="w-full text-center font-cute text-2xl font-bold text-[#E28F6B] bg-[#FAF6F0] border-2 border-[#F3C5A8] rounded-2xl py-3 px-4 focus:outline-none focus:border-[#E28F6B] transition-colors"
@@ -146,14 +150,14 @@
 <!-- 퀴즈 전용 스크립트 -->
 <script>
     const QUIZ = [
-        { hint: '눈빛이 ㅇㅇ하다. ㅇㅇ곰. (그으윽~ 깊고 멍한 눈빛)', answers: ['그윽곰'] },
-        { hint: '눈이 ㅇㅇ 부었다. 눈ㅇㅇ곰.', answers: ['눈팅팅곰'] },
-        { hint: '펑펑 우는 그 곰! (세계관 페이지 감정 체인저에도 있어요)', answers: ['오열곰'] },
-        { hint: 'ㅇㅇ을 찌푸리다. ㅇㅇ곰.', answers: ['미간곰'] },
-        { hint: '새까맣게 그을린 곰의 진짜 별명은? 🏖️ 태닝곰 vs 선탠곰', answers: ['태닝곰'] },
-        { hint: '애애앵~ 🦟 귓가에 맴도는 그 소리!', answers: ['모기곰'] },
-        { hint: '징글벨 징글벨 🎄 선물 주러 왔곰!', answers: ['산타곰'] },
-        { hint: '"곰"이 가운데 들어가는 4글자. 편의점 대표 삼각▲ 먹거리!', answers: ['삼각곰밥'] },
+        { img: 'images/game/그윽곰.jpg',   hint: '눈빛이 ㅇㅇ하다. ㅇㅇ곰.', answers: ['그윽곰'] },
+        { img: 'images/game/눈팅팅곰.webp', hint: '눈이 ㅇㅇ 부었다. 눈ㅇㅇ곰.', answers: ['눈팅팅곰'] },
+        { img: 'images/game/오열곰.webp',   hint: '펑펑 우는 그 곰!', answers: ['오열곰'] },
+        { img: 'images/game/미간곰.jpg',   hint: 'ㅇㅇ을 찌푸리다. ㅇㅇ곰.', answers: ['미간곰'] },
+        { img: 'images/game/말도마.jpg',   hint: '오른쪽에 있는 곰의 이름은? 🏖️ 태닝곰 vs 선탠곰', answers: ['태닝곰'] },
+        { img: 'images/game/모기곰.gif',   hint: '애애앵~ 🦟 귓가에 맴도는 그 소리!', answers: ['모기곰'] },
+        { img: 'images/game/산타곰.jpg',   hint: '징글벨 징글벨 🎄', answers: ['산타곰'] },
+        { img: 'images/game/삼각곰밥.png', hint: '"곰"이 가운데 들어가는 4글자. 편의점 삼각▲!', answers: ['삼각곰밥'] },
     ];
     const BEST_KEY = 'jokebear_quiz_best';
 
@@ -167,6 +171,7 @@
     }
 
     const hintText = document.getElementById('hint-text');
+    const quizImg = document.getElementById('quiz-img');
     const answerInput = document.getElementById('answer-input');
     const submitBtn = document.getElementById('submit-btn');
     const nextBtn = document.getElementById('next-btn');
@@ -191,6 +196,8 @@
     function renderQuestion() {
         answered = false;
         const q = QUIZ[idx];
+        quizImg.src = q.img;
+        quizImg.alt = '이 농담곰의 별명은?';
         hintText.textContent = q.hint;
         answerInput.value = '';
         answerInput.disabled = false;
@@ -290,6 +297,9 @@
             else nextQuestion();
         }
     });
+
+    // 문제 이미지 미리 불러오기 (전환 지연 방지)
+    QUIZ.forEach(q => { const im = new Image(); im.src = q.img; });
 
     // 시작
     showBest();
