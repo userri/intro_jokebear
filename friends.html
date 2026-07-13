@@ -1,0 +1,229 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>농담곰 세계관 - 매력 포인트 & 조연 친구들</title>
+    <!-- Tailwind CSS -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    <!-- Google Fonts: Gaegu (Heading), Noto Sans KR (Body) -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Gaegu:wght@400;700&family=Noto+Sans+KR:wght@300;400;500;700&display=swap" rel="stylesheet">
+
+    <style>
+        html { font-size: 17px; }
+        .font-cute { font-family: 'Gaegu', cursive; }
+        body {
+            font-family: 'Noto Sans KR', sans-serif;
+            background-color: #FAF6F0;
+            color: #4A3E3D;
+        }
+        @keyframes float {
+            0%, 100% { transform: translateY(0) rotate(0deg); }
+            50% { transform: translateY(-8px) rotate(1deg); }
+        }
+        .float-animation { animation: float 4s ease-in-out infinite; }
+        @keyframes pulse-soft {
+            0%, 100% { transform: scale(1); }
+            50% { transform: scale(1.03); }
+        }
+        .pulse-animation { animation: pulse-soft 3s ease-in-out infinite; }
+        ::-webkit-scrollbar { width: 8px; }
+        ::-webkit-scrollbar-track { background: #FAF6F0; }
+        ::-webkit-scrollbar-thumb { background: #E8D8C8; border-radius: 10px; }
+    </style>
+</head>
+<body class="overflow-x-hidden">
+
+<!-- ===== 공통 네비게이션 바 (모든 페이지 동일) ===== -->
+<nav class="sticky top-0 z-50 bg-[#FAF6F0]/90 backdrop-blur-md border-b border-[#F3C5A8]/30 px-6 py-4">
+    <div class="max-w-5xl mx-auto flex justify-between items-center">
+        <a href="index.html" class="font-cute text-3xl font-bold tracking-wider text-[#E28F6B] flex items-center gap-2">
+            <img src="images/얼굴.jpg" alt="농담곰 얼굴" class="inline-block w-9 h-9 object-cover rounded-full hover:scale-110 transition-transform"> 농담곰.kr
+        </a>
+        <!-- 데스크탑 메뉴 -->
+        <div class="hidden md:flex gap-8 font-cute text-xl font-bold">
+            <a href="index.html" class="text-[#4A3E3D] hover:text-[#E28F6B] transition-colors">홈</a>
+            <a href="friends.html" class="text-[#E28F6B] underline underline-offset-8 decoration-2">세계관</a>
+            <a href="goods.html" class="text-[#4A3E3D] hover:text-[#E28F6B] transition-colors">굿즈</a>
+        </div>
+        <!-- 햄버거 버튼 (모바일) -->
+        <button onclick="toggleMenu()" class="md:hidden text-3xl text-[#E28F6B]" aria-label="메뉴 열기">☰</button>
+    </div>
+    <!-- 모바일 드롭다운 메뉴 -->
+    <div id="mobile-menu" class="hidden md:hidden mt-4 flex flex-col gap-2 font-cute text-xl font-bold text-center">
+        <a href="index.html" class="py-2 rounded-xl text-[#4A3E3D] hover:bg-[#FFF5EB]">홈</a>
+        <a href="friends.html" class="py-2 rounded-xl bg-[#FFF0E0] text-[#E28F6B]">세계관</a>
+        <a href="goods.html" class="py-2 rounded-xl text-[#4A3E3D] hover:bg-[#FFF5EB]">굿즈</a>
+    </div>
+</nav>
+
+<!-- 매력 포인트 카드 섹션 -->
+<section id="points" class="py-20 px-6 bg-[#FFF9F3] border-b border-[#F3C5A8]/20">
+    <div class="max-w-5xl mx-auto">
+        <div class="text-center mb-16">
+            <span class="text-[#E28F6B] font-bold tracking-wider text-sm bg-white px-3 py-1 rounded-full shadow-sm">집중 분석</span>
+            <h2 class="font-cute text-4xl md:text-5xl font-bold mt-3 text-[#4A3E3D]">농담곰의 심쿵 매력 포인트 4가지</h2>
+            <p class="text-gray-600 mt-4 max-w-xl mx-auto">카드들을 하나씩 살펴보세요! 직접 눌러보는 특별한 체험도 준비해뒀답니다.</p>
+        </div>
+
+        <div class="grid md:grid-cols-2 gap-8 mb-16">
+            <!-- 포인트 1: 자유로운 그림체 (상호작용 1 - 이미지 뷰어 연동) -->
+            <div class="bg-white border-2 border-[#FFDEB4] rounded-3xl p-8 shadow-sm hover:shadow-md transition-shadow flex flex-col justify-between">
+                <div>
+                    <span class="text-4xl">✏️</span>
+                    <h3 class="font-cute text-2xl md:text-3xl font-bold text-[#E28F6B] my-3">1. 심플한 이목구비에서 나오는 무궁무진한 변신</h3>
+                    <p class="text-gray-600 text-sm leading-relaxed mb-6">
+                        농담곰의 이목구비는 매우 단순해요. 그래서 작가 나가노 님은 농담곰을 맛있는 바나나로도, 달콤한 고구마로도, 고소한 약과로도 자유롭게 그려냅니다!
+                    </p>
+                </div>
+                <!-- 실시간 변신 상호작용 놀이터 -->
+                <div class="bg-[#FAF6F0] rounded-2xl p-4 text-center border border-dashed border-[#F3C5A8]">
+                    <p class="text-xs text-gray-500 font-bold mb-3">🎨 눌러서 진짜 농담곰의 변신을 확인해보세요!</p>
+                    <div class="flex justify-center gap-2 mb-4">
+                        <button onclick="morphBear('banana')" class="morph-btn px-3 py-1 bg-[#E28F6B] text-white text-xs font-cute font-bold rounded-full hover:opacity-90 transition-all">바나나곰 🍌</button>
+                        <button onclick="morphBear('potato')" class="morph-btn px-3 py-1 bg-gray-200 text-gray-700 text-xs font-cute font-bold rounded-full hover:bg-gray-300 transition-all">고구마곰 🍠</button>
+                        <button onclick="morphBear('yakgwa')" class="morph-btn px-3 py-1 bg-gray-200 text-gray-700 text-xs font-cute font-bold rounded-full hover:bg-gray-300 transition-all">약과곰 🍪</button>
+                    </div>
+                    <!-- 모핑 뷰어 (동적 이미지 렌더링 컨테이너) -->
+                    <div id="morph-viewer-box" class="w-32 h-32 mx-auto flex items-center justify-center bg-white rounded-2xl border border-[#F3C5A8]/50 p-1 shadow-inner overflow-hidden transition-all duration-300">
+                        <img id="morph-img" src="images/바나나누끼2.png" alt="바나나농담곰" class="w-full h-full object-contain transition-all duration-300 transform scale-100">
+                    </div>
+                </div>
+            </div>
+
+            <!-- 포인트 2: 풍부한 감정 표현 (상호작용 2) -->
+            <div class="bg-white border-2 border-[#FFDEB4] rounded-3xl p-8 shadow-sm hover:shadow-md transition-shadow flex flex-col justify-between">
+                <div>
+                    <span class="text-4xl">😋</span>
+                    <h3 class="font-cute text-2xl md:text-3xl font-bold text-[#E28F6B] my-3">2. 풍부한 감정 표현</h3>
+                    <p class="text-gray-600 text-sm leading-relaxed mb-6">
+                        이목구비 선 몇 개만으로 세상 누구보다 행복해하고, 세상 누구보다 처절하게 우는 감정선을 보여줍니다. 농담곰의 리액션을 보면 마음이 따뜻해져요.
+                    </p>
+                </div>
+                <!-- 감정 체인저 놀이터 -->
+                <div class="bg-[#FAF6F0] rounded-2xl p-4 text-center border border-dashed border-[#F3C5A8]">
+                    <p class="text-xs text-gray-500 font-bold mb-3">💓 감정을 터치해서 표정을 바꿔보세요!</p>
+                    <div class="grid grid-cols-4 gap-1 mb-4">
+                        <button onclick="expressFeel('crying')" class="px-2 py-1 bg-white hover:bg-[#FFF0E0] border border-[#FFDEB4] text-xs font-cute font-bold rounded-lg text-blue-500">오열곰</button>
+                        <button onclick="expressFeel('proud')" class="px-2 py-1 bg-white hover:bg-[#FFF0E0] border border-[#FFDEB4] text-xs font-cute font-bold rounded-lg text-amber-500">우쭐곰</button>
+                        <button onclick="expressFeel('breath')" class="px-2 py-1 bg-white hover:bg-[#FFF0E0] border border-[#FFDEB4] text-xs font-cute font-bold rounded-lg text-teal-500">숨참곰</button>
+                        <button onclick="expressFeel('hurt')" class="px-2 py-1 bg-white hover:bg-[#FFF0E0] border border-[#FFDEB4] text-xs font-cute font-bold rounded-lg text-red-500">상처받았곰</button>
+                    </div>
+                    <!-- 표정 뷰어 (실제 이미지) -->
+                    <div class="w-24 h-24 mx-auto flex items-center justify-center bg-white rounded-xl border border-[#F3C5A8]/50 p-1 shadow-inner overflow-hidden">
+                        <img id="feeling-img" src="images/우쭐곰.jpg" alt="우쭐곰" class="w-full h-full object-contain transition-all duration-300">
+                    </div>
+                </div>
+            </div>
+
+            <!-- 포인트 3: 독특한 세계관 -->
+            <div class="bg-white border-2 border-[#FFDEB4] rounded-3xl p-8 shadow-sm hover:shadow-md transition-shadow flex flex-col justify-between">
+                <div>
+                    <span class="text-4xl">💡</span>
+                    <h3 class="font-cute text-2xl md:text-3xl font-bold text-[#E28F6B] my-3">3. 세계관 속 친구들</h3>
+                    <p class="text-gray-600 text-sm leading-relaxed mb-6">
+                        작가의 트위터 만화 속 세계관은 기묘하지만 다정합니다. 스스로를 튀기며 기뻐하는 '두더지 고로케', 듬직한 인생의 친구 '퍼그상' 등 가슴 따뜻해지는 소소한 일상을 선사하죠.
+                    </p>
+                </div>
+                <div class="pt-4 border-t border-gray-100">
+                    <div class="flex flex-wrap gap-2">
+                        <span class="px-3 py-1 bg-[#FFF5EB] text-[#E28F6B] text-xs font-cute font-bold rounded-full border border-[#FFDEB4]">두더지 고로케</span>
+                        <span class="px-3 py-1 bg-[#FFF5EB] text-[#E28F6B] text-xs font-cute font-bold rounded-full border border-[#FFDEB4]">퍼그씨</span>
+                        <span class="px-3 py-1 bg-[#FFF5EB] text-[#E28F6B] text-xs font-cute font-bold rounded-full border border-[#FFDEB4]">임팔라</span>
+                        <span class="px-3 py-1 bg-[#FFF5EB] text-gray-400 text-xs font-cute font-bold rounded-full border border-[#FFDEB4]">그리고 더…</span>
+                    </div>
+                </div>
+            </div>
+
+            <!-- 포인트 4: 실제 엄청난 인기 증거 -->
+            <div class="bg-white border-2 border-[#FFDEB4] rounded-3xl p-8 shadow-sm hover:shadow-md transition-shadow flex flex-col justify-between">
+                <div>
+                    <span class="text-4xl">🔥</span>
+                    <h3 class="font-cute text-2xl md:text-3xl font-bold text-[#E28F6B] my-3">4. 여기저기 콜라보 대세</h3>
+                    <p class="text-gray-600 text-sm leading-relaxed mb-6">
+                        패션 브랜드 스파오 콜라보부터 성수동 상설 팝업, 영등포·신촌 팝업스토어까지! 브랜드와 공간을 가리지 않고 꾸준히 콜라보를 이어가며 오프라인에서도 존재감을 뿜어내는 중이에요.
+                    </p>
+                </div>
+                <div class="bg-[#FFF5EB] p-3 rounded-xl flex items-center justify-between text-xs text-[#E28F6B] font-bold">
+                    <span>🤝 브랜드 불문 콜라보 러시!</span>
+                    <span>보일 때 사야 함 🌟</span>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+
+<!-- 세계관 친구들 소개 섹션 -->
+<section id="world" class="py-20 px-6 bg-white">
+    <div class="max-w-5xl mx-auto">
+        <div class="text-center mb-16">
+            <span class="text-[#E28F6B] font-bold tracking-wider text-sm bg-[#FFF0E0] px-3 py-1 rounded-full">주변 인물 탐구</span>
+            <h2 class="font-cute text-4xl md:text-5xl font-bold mt-3 text-[#4A3E3D]">함께하면 더 귀여운 세계관 조연들</h2>
+            <p class="text-gray-600 mt-4 max-w-xl mx-auto">트위터 만화 속에 자주 등장하는 인기 일원들을 만나보세요! 카드를 클릭하면 이들의 귀여운 속마음 말풍선이 열립니다.</p>
+        </div>
+
+        <div class="grid sm:grid-cols-2 md:grid-cols-3 gap-6">
+            <!-- 친구 1: 두더지 고로케 -->
+            <div onclick="showFriendBubble('korokke', '두더지 고로케', '안은 촉촉~ 겉은 바삭바삭 맛있게~', 'images/고로케들.jpg')" class="bg-[#FFFBF7] hover:bg-[#FFF5EB] border border-[#FFDEB4] rounded-2xl p-6 text-center cursor-pointer transform hover:-translate-y-2 transition-all shadow-sm">
+                <div class="w-28 h-28 rounded-full mx-auto mb-4 relative shadow-inner overflow-hidden bg-white border border-[#FFDEB4]">
+                    <img src="images/고로케전신샷.jpg" alt="두더지 고로케" class="w-full h-full object-cover">
+                </div>
+                <h3 class="font-cute text-2xl font-bold text-[#E28F6B] mb-2">두더지 고로케</h3>
+                <p class="text-sm text-gray-500 leading-relaxed">두더지처럼 지하에 모여 사는 감자 고로케 종족. 바삭바삭해야 하기 때문에 비에 젖으면 몸 상태가 급격히 악화된다. 그렇게 되면 빵가루를 묻혀서 더 튀겨야 한다.</p>
+                <p class="text-sm text-rose-400 mt-3 font-semibold">💡 터치해서 말 시키기</p>
+            </div>
+
+            <!-- 친구 2: 퍼그씨 -->
+            <div onclick="showFriendBubble('pug', '퍼그씨', '안녕하세요퍼그입니다잘부탁드립니다.', 'images/퍼그카.jpg')" class="bg-[#FFFBF7] hover:bg-[#FFF5EB] border border-[#FFDEB4] rounded-2xl p-6 text-center cursor-pointer transform hover:-translate-y-2 transition-all shadow-sm">
+                <div class="w-28 h-28 rounded-full mx-auto mb-4 relative shadow-inner overflow-hidden bg-white border border-[#FFDEB4]">
+                    <img src="images/농퍼그.jpg" alt="퍼그씨" class="w-full h-full object-cover">
+                </div>
+                <h3 class="font-cute text-2xl font-bold text-[#E28F6B] mb-2">퍼그씨</h3>
+                <p class="text-sm text-gray-500 leading-relaxed">농담곰 단짝</p>
+                <p class="text-sm text-rose-400 mt-3 font-semibold">💡 터치해서 말 시키기</p>
+            </div>
+
+            <!-- 친구 3: 임팔라 -->
+            <div onclick="showFriendBubble('impala', '임팔라', '사는 게 빠르지 않겠어...?', 'images/가젤가젤.png')" class="bg-[#FFFBF7] hover:bg-[#FFF5EB] border border-[#FFDEB4] rounded-2xl p-6 text-center cursor-pointer transform hover:-translate-y-2 transition-all shadow-sm">
+                <div class="w-28 h-28 rounded-full mx-auto mb-4 relative shadow-inner overflow-hidden bg-white border border-[#FFDEB4]">
+                    <img src="images/임팔라.jpg" alt="임팔라" class="w-full h-full object-contain p-1">
+                </div>
+                <h3 class="font-cute text-2xl font-bold text-[#E28F6B] mb-2">임팔라</h3>
+                <p class="text-sm text-gray-500 leading-relaxed">물건을 살까말까 고민할때 스윽 나타나서 사라고 속삭인다.</p>
+                <p class="text-sm text-rose-400 mt-3 font-semibold">💡 터치해서 말 시키기</p>
+            </div>
+        </div>
+
+        <!-- 캐릭터 말풍선 팝업 (실시간 반응형 박스) -->
+        <div id="friend-bubble-box" class="hidden mt-8 max-w-2xl mx-auto bg-[#FFF5EB] border-2 border-[#E28F6B] rounded-3xl p-6 text-center relative">
+            <img id="bubble-avatar" src="" alt="" class="w-48 h-48 md:w-56 md:h-56 object-contain bg-white rounded-2xl mx-auto mb-3 border-2 border-[#FFDEB4] p-1 hidden">
+            <h4 id="bubble-title" class="font-cute text-2xl font-bold text-[#E28F6B] mb-1">캐릭터를 선택해보세요!</h4>
+            <p id="bubble-text" class="text-[#4A3E3D] font-medium leading-relaxed italic">"귀여운 대사가 여기에 나타나요."</p>
+            <button onclick="closeFriendBubble()" class="absolute top-3 right-3 text-gray-400 hover:text-[#4A3E3D] text-lg font-bold">×</button>
+        </div>
+    </div>
+</section>
+
+<!-- 푸터 정보 -->
+<footer class="bg-[#4A3E3D] text-[#FAF6F0] py-12 px-6 text-center">
+    <div class="max-w-4xl mx-auto">
+        <h3 class="font-cute text-3xl font-bold mb-4 tracking-widest text-[#FFF5EB]">매일 맛있는 걸 먹고 싶어</h3>
+        <p class="text-xs text-gray-300 max-w-md mx-auto leading-relaxed mb-6">
+            농담곰(Nagano Bear)은 작가 Nagano 님의 정품 IP 캐릭터입니다. 본 페이지는 농담곰을 아끼고 소장하는 가슴 따뜻한 팬의 마음으로 제작된 아름다운 가상 팬 허브 디자인 사이트입니다.
+        </p>
+        <div class="border-t border-gray-600/50 pt-6 text-[11px] text-gray-400 flex flex-col sm:flex-row justify-between items-center gap-4">
+            <span>© 2026 NAGANO BEAR FAN HUB. Crafted with 🤎 by Vanilla WebDev</span>
+            <div class="flex gap-4">
+                <a href="#" class="hover:text-white transition-colors">이용약관</a>
+                <a href="#" class="hover:text-white transition-colors">개인정보처리방침</a>
+                <a href="https://twitter.com/ngntrtr" target="_blank" class="hover:text-white transition-colors">공식 트위터 가기 🕊️</a>
+            </div>
+        </div>
+    </div>
+</footer>
+
+<script src="script.js"></script>
+</body>
+</html>
