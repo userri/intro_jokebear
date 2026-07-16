@@ -1,3 +1,4 @@
+# 농담곰 소개 팬페이지
 https://intro-jokebear.netlify.app/
 <img width="1178" height="1199" alt="image" src="https://github.com/user-attachments/assets/ec45032c-a68b-45d3-b5d5-39ceaedf6bf5" />
 <img width="1165" height="1106" alt="image" src="https://github.com/user-attachments/assets/96a10372-cd33-4d5d-83ea-18c0484941b3" />
